@@ -1,3 +1,4 @@
+st.image(str(product["image"]), use_container_width=True)
 from pathlib import Path
 import streamlit as st
 BASE_DIR = Path(__file__).resolve().parent.parent
