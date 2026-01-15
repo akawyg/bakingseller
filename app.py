@@ -1,56 +1,35 @@
 import streamlit as st
+from pathlib import Path
 
-col1, col2, col3 = st.columns([1, 1, 1])
+st.set_page_config(page_title="베이킹 셀러", layout="wide")
 
-with col1:
-    if st.button("🏠 메인"):
-        st.switch_page("app.py")
+BASE_DIR = Path(__file__).resolve().parent
 
-with col2:
-    if st.button("🛒 상품"):
-        st.switch_page("pages/product_1.py")
+products = [
+    {
+        "id": 1,
+        "name": "상품 1",
+        "price": "10,000원",
+        "image": BASE_DIR / "images" / "product1_1.jpg",
+        "page": "pages/product_1.py"
+    },
+    {
+        "id": 2,
+        "name": "상품 2",
+        "price": "20,000원",
+        "image": BASE_DIR / "images" / "product2_1.jpg",
+        "page": "pages/product_2.py"
+    }
+]
 
-with col3:
-    if st.button("📦 주문"):
-        st.switch_page("pages/product_2.py")
+st.title("🍞 베이킹 상품 목록")
 
-import streamlit as st
+cols = st.columns(len(products))
 
-st.set_page_config(layout="wide")
-
-st.markdown("""
-<style>
-section[data-testid="stSidebar"] {
-    display: none;
-}
-</style>
-""", unsafe_allow_html=True)
-import streamlit as st
-
-st.set_page_config(
-    page_title="My Shop",
-    layout="wide"
-)
-
-st.title("🛍️ My Online Shop")
-
-st.markdown("""
-### 여기에 홍보 문구를 작성하세요  
-이 문장은 **나중에 직접 수정하기 쉬우라고 임시 텍스트**입니다.
-
-- 최고의 품질
-- 합리적인 가격
-- 빠른 배송
-
-지금 바로 상품을 확인해 보세요!
-""")
-
-st.markdown("---")
-
-st.subheader("📌 페이지 안내")
-st.write("""
-왼쪽 상단 메뉴를 통해  
-- **상품 목록**
-- **상품 상세**
-페이지로 이동할 수 있습니다.
-""")
+for col, product in zip(cols, products):
+    with col:
+        st.image(str(product["image"]), use_container_width=True)
+        st.subheader(product["name"])
+        st.write(product["price"])
+        if st.button("자세히 보기", key=product["id"]):
+            st.switch_page(product["page"])
