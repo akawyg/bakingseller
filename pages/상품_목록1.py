@@ -1,5 +1,16 @@
 import streamlit as st
 
+st.set_page_config(layout="wide")
+
+st.markdown("""
+<style>
+section[data-testid="stSidebar"] {
+    display: none;
+}
+</style>
+""", unsafe_allow_html=True)
+import streamlit as st
+
 st.title("🛒 상품 목록")
 
 products = [
