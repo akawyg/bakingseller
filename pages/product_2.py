@@ -1,67 +1,24 @@
 import streamlit as st
-
-col1, col2, col3 = st.columns([1, 1, 1])
-
-with col1:
-    if st.button("🏠 메인"):
-        st.switch_page("app.py")
-
-with col2:
-    if st.button("🛒 상품"):
-        st.switch_page("pages/product_1.py")
-
-with col3:
-    if st.button("📦 주문"):
-        st.switch_page("pages/product_2.py")
-
-import streamlit as st
+from pathlib import Path
 
 st.set_page_config(layout="wide")
 
-st.markdown("""
-<style>
-section[data-testid="stSidebar"] {
-    display: none;
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+product = {
+    "name": "상품 2",
+    "price": "20,000원",
+    "image": BASE_DIR / "images" / "product2_1.jpg",
+    "description": "인기 많은 상품 2입니다."
 }
-</style>
-""", unsafe_allow_html=True)
 
-import streamlit as st
+# 🔝 상단 버튼
+top_col1, top_col2, top_col3 = st.columns([1, 6, 1])
+with top_col3:
+    if st.button("← 목록으로"):
+        st.switch_page("app.py")
 
-product = st.session_state.get("selected_product")
-
-if product is None:
-    st.warning("상품을 먼저 선택해주세요.")
-    st.stop()
-
+st.image(str(product["image"]), use_container_width=True)
 st.title(product["name"])
-
-col1, col2 = st.columns([2, 1])
-
-with col1:
-    st.image(product["image"], use_container_width=True)
-    st.image(product["image"], use_container_width=True)
-
-with col2:
-    st.subheader("상품 설명")
-    st.write("""
-    이 상품은 예시 상품입니다.  
-    실제 설명은 나중에 자유롭게 수정하세요.
-    """)
-
-    option = st.selectbox(
-        "옵션 선택",
-        ["옵션 A", "옵션 B", "옵션 C"]
-    )
-
-    quantity = st.number_input(
-        "수량",
-        min_value=1,
-        value=1
-    )
-
-    st.markdown(f"### 가격: {product['price']}")
-
-    if st.button("🛍️ 주문하기"):
-        st.success("주문이 완료되었습니다! (실제 결제는 미구현)")
-
+st.write(product["price"])
+st.write(product["description"])
