@@ -38,16 +38,15 @@ products = [
         "id": 1,
         "name": "상품 1",
         "price": "10,000원",
-        "image": "../images/product1_1.jpg"
+        "image": BASE_DIR / "images" / "product1_1.jpg"
     },
     {
         "id": 2,
         "name": "상품 2",
         "price": "20,000원",
-        "image": "../images/product2_1.jpg"
+        "image": BASE_DIR / "images" / "product2_1.jpg"
     }
 ]
-
 cols = st.columns(2)
 
 for idx, product in enumerate(products):
