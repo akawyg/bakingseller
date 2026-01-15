@@ -12,7 +12,7 @@ with col2:
 
 with col3:
     if st.button("📦 주문"):
-        st.switch_page("pages/2_상품_상세.py")
+        st.switch_page("pages/product_2.py")
 
 import streamlit as st
 
