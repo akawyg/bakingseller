@@ -1,62 +1,24 @@
-st.image(str(product["image"]), use_container_width=True)
+import streamlit as st
 from pathlib import Path
-import streamlit as st
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-import streamlit as st
-
-col1, col2, col3 = st.columns([1, 1, 1])
-
-with col1:
-    if st.button("🏠 메인"):
-        st.switch_page("app.py")
-
-with col2:
-    if st.button("🛒 상품"):
-        st.switch_page("pages/product_1.py")
-
-with col3:
-    if st.button("📦 주문"):
-        st.switch_page("pages/product_2.py")
-
-import streamlit as st
 
 st.set_page_config(layout="wide")
 
-st.markdown("""
-<style>
-section[data-testid="stSidebar"] {
-    display: none;
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+product = {
+    "name": "상품 1",
+    "price": "10,000원",
+    "image": BASE_DIR / "images" / "product1_1.jpg",
+    "description": "맛있는 상품 1입니다."
 }
-</style>
-""", unsafe_allow_html=True)
-import streamlit as st
 
-st.title("🛒 상품 목록")
+# 🔝 상단 버튼 영역
+top_col1, top_col2, top_col3 = st.columns([1, 6, 1])
+with top_col3:
+    if st.button("← 목록으로"):
+        st.switch_page("app.py")
 
-products = [
-    {
-        "id": 1,
-        "name": "상품 1",
-        "price": "10,000원",
-        "image": BASE_DIR / "images" / "product1_1.jpg"
-    },
-    {
-        "id": 2,
-        "name": "상품 2",
-        "price": "20,000원",
-        "image": BASE_DIR / "images" / "product2_1.jpg"
-    }
-]
-cols = st.columns(2)
-
-for idx, product in enumerate(products):
-    with cols[idx % 2]:
-        st.image(product["image"], use_container_width=True)
-        st.subheader(product["name"])
-        st.write(product["price"])
-
-        if st.button(f"{product['name']} 구매하기", key=product["id"]):
-            st.session_state["selected_product"] = product
-            st.switch_page("pages/2_상품_상세.py")
-
+st.image(str(product["image"]), use_container_width=True)
+st.title(product["name"])
+st.write(product["price"])
+st.write(product["description"])
