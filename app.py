@@ -5,7 +5,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# 🔝 상단 메뉴 (가짜 네비게이션)
+# 🔝 상단 메뉴
 menu_l, menu_c, menu_r = st.columns([1, 6, 1])
 
 with menu_l:
@@ -15,18 +15,19 @@ with menu_r:
     if st.button("상품 보기"):
         st.switch_page("pages/1_products.py")
 
-# 🧁 메인 소개
-st.title("🍞 베이킹 셀러에 오신 것을 환영합니다")
+# 🧁 소개 문구
+st.title("🍞 베이킹 셀러")
 
 st.write("""
-이 사이트는 맛있는 베이킹 상품을 판매하는 쇼핑몰입니다.  
-신선한 재료와 정성으로 만든 다양한 상품을 만나보세요.
+이 사이트는 수제로 만든 베이킹 상품을 판매하는 공간입니다.  
+신선한 재료와 정성으로 만든 상품들을 만나보세요.
 
-(이 문구는 나중에 자유롭게 수정하셔도 됩니다)
+(이 문구는 자유롭게 수정하셔도 됩니다)
 """)
 
 st.image(
-    "https://images.unsplash.com/photo-1542826438-6f7f8f2c2d3b",
+    "https://images.unsplash.com/photo-1509440159598-0249088772ff",
     use_container_width=True
 )
+
 
