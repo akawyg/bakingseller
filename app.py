@@ -8,11 +8,11 @@ with col1:
 
 with col2:
     if st.button("🛒 상품"):
-        st.switch_page("pages/1_상품_목록.py")
+        st.switch_page("pages/product_1.py")
 
 with col3:
     if st.button("📦 주문"):
-        st.switch_page("pages/2_상품_상세.py")
+        st.switch_page("pages/product_2.py")
 
 import streamlit as st
 
